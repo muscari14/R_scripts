@@ -43,3 +43,29 @@ tbl
 levels(oreder_levels)
 
 oreder_levels
+
+levels <- sort(unique(tbl$year))
+
+year_fct <- fct(tbl$year, levels = levels)
+
+
+plot(year_fct)
+
+fct_count(year_fct)
+
+year_fct <- fct_collapse(year_fct, "1990-1993" = c(1990, 1991, 1992,
+                                                   1993),
+                         other_level = "other")
+                         
+                             
+
+
+
+fct_count(year_fct)
+
+tbl %>% 
+  ggplot() +
+  geom_point(aes(y = name, x = order, color = year_fct))
+
+
+?fct_collapse  
